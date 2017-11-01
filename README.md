@@ -20,9 +20,11 @@ import (
 func main() {
 	base56Alphabet := "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz"
 
-	gen, _ := anybase.NewGenerator(base56Alphabet)
-	num := gen.NumberFromUint(1<<64 - 1)
+	encoded, err := anybase.Encode(^uint(0), base56Alphabet)
+	if err != nil {
+		panic(err)
+	}
 
-	fmt.Println(num) // 36psTsTZwTUH
+	fmt.Println(encoded) // 36psTsTZwTUH
 }
 ```
